@@ -160,10 +160,13 @@ class MultiSegmentTrajectoryGenerator():
             else:
                 qdf = (wp[i + 1] - wp[i]) / self.T
 
+            qddf = np.zeros(self.ndof)
+            qdd0 = np.zeros(self.ndof)
+
             print(f"Segment {i+1}: q0={q0}, qf={qf}, qd0={qd0}, qdf={qdf}")
 
             model = type(self.method)(ndof=self.ndof) # creates a new instance of the trajectory gen class
-            model.solve(q0, qf, qd0, qdf, T=T)
+            model.solve(q0, qf, qd0, qdf, qdd0, qddf, T=T)
             self.segment_models.append(model)
 
     
