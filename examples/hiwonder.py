@@ -89,7 +89,6 @@ class FiveDOFRobot(FiveDOFRobotTemplate):
         DH[2] = [curr_joint_values[2], 0, self.l3, np.pi]
         DH[3] = [curr_joint_values[3] + np.pi/2, 0, 0, np.pi/2]
         DH[4] = [curr_joint_values[4], self.l4 + self.l5, 0, 0]
-        #DH = self.calc_dh(joint_values, radians=radians)
         
         H_LIST = [ut.dh_to_matrix(DH[i]) for i in range(len(joint_values))]
         H_01, H_12, H_23, H_34, H_45 = H_LIST
@@ -252,7 +251,7 @@ class FiveDOFRobot(FiveDOFRobotTemplate):
 if __name__ == "__main__":
     
     robot_model = FiveDOFRobot()
-    traj_model = QuinticPolynomial()
+    traj_model = Trapezoidal()
     
     robot = RobotSim(robot_model=robot_model, traj_model=traj_model)
     viz = Visualizer(robot=robot)
