@@ -178,7 +178,7 @@ class Trapezoidal():
 
     def solve(self, q0, qf, qd0, qdf, qdd0, qddf, T):
         """
-        Compute quintic polynomial coefficients for each DOF.
+        Compute trapezoidal variables for trajectory generation.
 
         Parameters
         ----------
@@ -237,17 +237,10 @@ class Trapezoidal():
                     X[i, 2, j] = -peak_accel_
         return t, X
             
-                
-
-
-
-
-
-
 
 def main():
     ndof = 2
-    method = Trapezoidal(ndof=ndof)
+    method = QuinticPolynomial(ndof=ndof)
     mode = "joint"
 
     # --------------------------------------------------------
